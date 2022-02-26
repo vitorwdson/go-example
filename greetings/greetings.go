@@ -16,6 +16,24 @@ func Hello(name string) (string, error) {
 	return message, nil
 }
 
+func Hellos(names []string) (map[string]string, error) {
+	// Initiates the messages map (types are specified as map[key]value)
+	messages := make(map[string]string)
+
+	for _, name := range names {
+		message, err := Hello(name)
+
+		if err != nil {
+			return nil, err
+		}
+
+		// Creates a new key-value pair for the the name and message
+		messages[name] = message
+	}
+
+	return messages, nil
+}
+
 // The init function will always run on the program startup
 func init() {
 	// Setting the seed for the rand module
